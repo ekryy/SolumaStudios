@@ -1,6 +1,6 @@
 from flask import Flask, render_template_string, request
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 TEMPLATE = """
 <!DOCTYPE html>
@@ -180,6 +180,24 @@ TEMPLATE = """
 @app.route('/')
 def index():
   return render_template_string(TEMPLATE)
+
+@app.route('/upload', methods=['POST'])
+def upload_image():
+  if 'file' not in request.files:
+    return 'No file selected', 400
+  
+  file = request.files['file']
+  if file.filename == '':
+    return 'No file selected', 400
+  
+  if file and file.filename.lower().endswith('.png'):
+    # Save to static folder
+    import os
+    os.makedirs('static', exist_ok=True)
+    file.save(os.path.join('static', file.filename))
+    return f'Image uploaded successfully: /static/{file.filename}'
+  
+  return 'Invalid file type. Please upload a PNG file.', 400
 
 
 if __name__ == '__main__':
