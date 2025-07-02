@@ -9,6 +9,7 @@ TEMPLATE = """
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soluma</title>
+  <link rel="icon" href="favicon.png" type="Solumalogo/png">
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     input, textarea { width: 100%; margin-bottom: 10px; }
@@ -23,24 +24,24 @@ TEMPLATE = """
   <div>
     <label>PCU values (comma-separated):</label>
     <input id="pcu_values" value="0.85, 0.70, 0.65, 0.60, 0.50, 0.45, 0.40, 0.35, 0.30">
-    <label>PCU costs:</label>
-    <input id="pcu_costs" value="20, 55, 125, 179, 490, 900, 15000, 45000">
+    <label style="background: #98FB98;">PCU costs:</label>
+    <input style="background: #98FB98;" id="pcu_costs" value="20, 55, 125, 179, 490, 900, 15000, 45000">
 
     <label>MMU values:</label>
     <input id="mmu_values" value="1.5, 2, 2.5, 3, 3.5, 4, 5, 8, 10, 20">
-    <label>MMU costs:</label>
-    <input id="mmu_costs" value="10, 40, 100, 200, 330, 500, 1200, 1600, 6000, 100000">
+    <label style="background: #98FB98;">MMU costs:</label>
+    <input style="background: #98FB98;" id="mmu_costs" value="10, 40, 100, 200, 330, 500, 1200, 1600, 6000, 100000">
 
     <label>BPU values:</label>
     <input id="bpu_values" value="25,50,100,200,400,800,1600,3200,6400,12800,25000,50000">
-    <label>BPU costs:</label>
-    <input id="bpu_costs" value="15,30,60,120,210,480,800,1500,3000,50000,70000,200000">
+    <label style="background: #98FB98;">BPU costs:</label>
+    <input style="background: #98FB98;" id="bpu_costs" value="15,30,60,120,210,480,800,1500,3000,50000,70000,200000">
 
     <div>
       <button id="btn_pcu">Upgrade PCU</button>
       <button id="btn_mmu">Upgrade MMU</button>
       <button id="btn_bpu">Upgrade BPU</button>
-      <button id="btn_reset">Reset Steps</button>
+      <button id="btn_reset" >Reset Steps</button>
     </div>
   </div>
 
@@ -160,7 +161,7 @@ TEMPLATE = """
       document.querySelector('#results tbody').innerHTML = '';
       cumTime = 0;
       stepCounter = 1;
-      idx = { pcu: 1, mmu: 1, bpu: 1 };
+      idx = { pcu: 0, mmu: 0, bpu: 0 };
       cur = { pcu: pcu_vals[0], mmu: mmu_vals[0], bpu: bpu_vals[0] };
       document.getElementById('btn_pcu').disabled = false;
       document.getElementById('btn_mmu').disabled = false;
