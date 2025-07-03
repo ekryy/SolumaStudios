@@ -24,8 +24,8 @@ TEMPLATE = """
 </head>
 <body>
 
-  <h1> Soluma Studios</h1>
-
+  <h1 style="color:#D8BFD8;"> Soluma Studios</h1>
+  <h2 style="color:#9966CC;"> Submit your test result by dming ekryt on discord.</h2>
   
   <div>
     <label>PCU values (comma-separated):</label>
@@ -47,7 +47,8 @@ TEMPLATE = """
       <button id="btn_pcu">Upgrade PCU</button>
       <button id="btn_mmu">Upgrade MMU</button>
       <button id="btn_bpu">Upgrade BPU</button>
-      <button id="btn_reset" >Reset Steps</button>
+      <button style="color: #B22222" id="btn_reset" >Reset Steps</button>
+      <button style="color: #006400" id="btn_save">Save Variables</button>
     </div>
   </div>
 
@@ -175,6 +176,8 @@ TEMPLATE = """
       
       saveSettings();
     };
+    const btnSave = document.getElementById('btn_save');
+    btnSave.onclick = () =>{saveSettings()};
 
     init();
   </script>
