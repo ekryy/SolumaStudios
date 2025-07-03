@@ -8,8 +8,11 @@ TEMPLATE = """
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soluma</title>
-  <link rel="icon" href="favicon.png" type="Solumalogo/png">
+
+  
+  <title>Loading...</title>
+  
+  <link rel="icon" href="/static/Solumalogo.png" type="image/png">
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     input, textarea { width: 100%; margin-bottom: 10px; }
@@ -20,7 +23,10 @@ TEMPLATE = """
   </style>
 </head>
 <body>
-  <h1>Upgrade Simulator</h1>
+
+  <h1> Soluma Studios</h1>
+
+  
   <div>
     <label>PCU values (comma-separated):</label>
     <input id="pcu_values" value="0.85, 0.70, 0.65, 0.60, 0.50, 0.45, 0.40, 0.35, 0.30">
@@ -172,6 +178,10 @@ TEMPLATE = """
 
     init();
   </script>
+
+<script src="/static/typing.js"></script>
+
+  
 </body>
 </html>
 """
@@ -181,22 +191,23 @@ TEMPLATE = """
 def index():
   return render_template_string(TEMPLATE)
 
+
 @app.route('/upload', methods=['POST'])
 def upload_image():
   if 'file' not in request.files:
     return 'No file selected', 400
-  
+
   file = request.files['file']
   if file.filename == '':
     return 'No file selected', 400
-  
+
   if file and file.filename.lower().endswith('.png'):
     # Save to static folder
     import os
     os.makedirs('static', exist_ok=True)
     file.save(os.path.join('static', file.filename))
     return f'Image uploaded successfully: /static/{file.filename}'
-  
+
   return 'Invalid file type. Please upload a PNG file.', 400
 
 
